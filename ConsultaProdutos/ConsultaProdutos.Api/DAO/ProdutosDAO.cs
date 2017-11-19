@@ -29,7 +29,7 @@ namespace ConsultaProdutos.Api.DAO
 
         public ProdutosDAO()
         {
-            var conteudoArquivoJson = File.ReadAllText(LocalArquivo);
+            var conteudoArquivoJson = File.ReadAllText((AppDomain.CurrentDomain.BaseDirectory) + LocalArquivo);
             Produtos = JsonConvert.DeserializeObject<List<Produto>>(conteudoArquivoJson).ToList();
         }
     }
