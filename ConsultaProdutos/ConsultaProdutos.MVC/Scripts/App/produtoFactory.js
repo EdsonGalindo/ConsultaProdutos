@@ -11,7 +11,7 @@
         function obterProdutosInicio()
         {
             return $.ajax({
-                url: 'Produto/Lista',
+                url: location.origin + '/Produto/Lista',
                 type: 'GET',
                 async: true
             });

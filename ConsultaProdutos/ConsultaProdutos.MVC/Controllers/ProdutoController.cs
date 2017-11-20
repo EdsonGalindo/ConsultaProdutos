@@ -2,11 +2,9 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ConsultaProdutos.MVC.Controllers
@@ -17,13 +15,11 @@ namespace ConsultaProdutos.MVC.Controllers
         static readonly String endPointHeader = "application/json";
         static readonly String endPoint = "http://localhost:51115/";
         
-        // GET: Produto
         public ActionResult Index()
         {
             return View();
         }
-
-        // GET: Produto
+        
         public async Task<JsonResult> Lista()
         {
             var rota = "Produto/ListarProdutosInicial";

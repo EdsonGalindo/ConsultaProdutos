@@ -9,7 +9,7 @@ namespace ConsultaProdutos.MVC.Models
 
         public String Nome { get; set; }
         
-        public string Preco { get; set; }
+        public Decimal Preco { get; set; }
 
         public String NomeMarca { get; set; }
 

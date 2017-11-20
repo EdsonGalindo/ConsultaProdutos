@@ -18,11 +18,6 @@ namespace ConsultaProdutos.Api.Controllers
         {
             ProdutosDAO dao = new ProdutosDAO();
             List<Produto> produto = dao.ListaPorNome(nomeProduto);
-            
-            foreach(var produtoItem in produto)
-            {
-                produtoItem.Preco = string.Format("{0:C2}", produtoItem.Preco);
-            }
 
             return Json(produto, JsonRequestBehavior.AllowGet);
         }
@@ -31,12 +26,7 @@ namespace ConsultaProdutos.Api.Controllers
         {
             ProdutosDAO dao = new ProdutosDAO();
             List<Produto> produto = dao.ListarTopDez();
-
-            foreach (var produtoItem in produto)
-            {
-                produtoItem.Preco = string.Format("{0:C2}", produtoItem.Preco);
-            }
-
+            
             return Json(produto, JsonRequestBehavior.AllowGet);
         }
     }
