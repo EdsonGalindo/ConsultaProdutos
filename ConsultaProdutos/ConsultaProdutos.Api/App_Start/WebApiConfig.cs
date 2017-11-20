@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ConsultaProdutos.Api
 {
@@ -10,6 +11,8 @@ namespace ConsultaProdutos.Api
         public static void Register(HttpConfiguration config)
         {
             // Serviços e configuração da API da Web
+            
+            config.EnableCors();
 
             // Rotas da API da Web
             config.MapHttpAttributeRoutes();

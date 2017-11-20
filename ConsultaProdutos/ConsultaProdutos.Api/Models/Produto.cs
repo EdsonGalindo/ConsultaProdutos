@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace ConsultaProdutos.Api.Models
 {
@@ -10,8 +8,8 @@ namespace ConsultaProdutos.Api.Models
         public int ProdutoId { get; set; }
 
         public String Nome { get; set; }
-
-        public Double Preco { get; set; }
+        
+        public string Preco { get; set; }
 
         public String NomeMarca { get; set; }
 

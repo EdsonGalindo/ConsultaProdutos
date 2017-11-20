@@ -1,9 +1,41 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Buscar produtos";
 }
+<html>
+<body ng-app="ProdutoApp" ng-controller="produtoController">
+    <h2>Busca de Produtos</h2>
 
-<h2>Busca de Produtos</h2>
+    <input type="text" class="form-control" name="nomeproduto" id="nomeproduto" 
+           placeholder="Digite aqui o nome do produto desejado" ng-model="nomeproduto" ng-keyup="Buscar()" />
 
+    <div>
+        <div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                        <th>Marca</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="produto in produtos">
+                    <tr>
+                        <td>{{produto.ProdutoId}}</td>
+                        <td>{{produto.Nome}}</td>
+                        <td>{{produto.Preco}}</td>
+                        <td>{{produto.NomeMarca}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-
+    <script src="~/Scripts/jquery-3.2.1.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/App/produtoApp.js"></script>
+    <script src="~/Scripts/App/produtoFactory.js"></script>
+    <script src="~/Scripts/App/produtoController.js"></script>
+</body>
+</html>

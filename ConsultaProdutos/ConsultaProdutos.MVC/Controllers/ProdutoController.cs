@@ -13,11 +13,10 @@ namespace ConsultaProdutos.MVC.Controllers
 {
     public class ProdutoController : Controller
     {
-        static HttpClient httpClient = new HttpClient();
+        static HttpClient httpClient;
         static readonly String endPointHeader = "application/json";
         static readonly String endPoint = "http://localhost:51115/";
-
-
+        
         // GET: Produto
         public ActionResult Index()
         {
@@ -25,24 +24,19 @@ namespace ConsultaProdutos.MVC.Controllers
         }
 
         // GET: Produto
-        public async Task<ActionResult> Lista()
+        public async Task<JsonResult> Lista()
         {
-            var rota = "Produtos/Inicio";
+            var rota = "Produto/ListarProdutosInicial";
             List<Produto> produtos = await ObterDadosProdutos(rota);
-
-            ViewBag.Produtos = produtos;
-
-            return View();
+            
+            return Json(produtos, JsonRequestBehavior.AllowGet);
         }
 
         private static async Task<List<Produto>> ObterDadosProdutos(string rota)
         {
-            httpClient.BaseAddress = new Uri(endPoint);
-            httpClient.DefaultRequestHeaders.Accept.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(endPointHeader));
-
             var produtosJson = string.Empty;
             List<Produto> produtos = null;
+            ConfigurarHttpClient();
 
             HttpResponseMessage resposta = await httpClient.GetAsync(rota);
 
@@ -52,7 +46,21 @@ namespace ConsultaProdutos.MVC.Controllers
                 produtos = JsonConvert.DeserializeObject<List<Produto>>(produtosJson);
             }
 
+            FecharHttpClient();
             return produtos;
+        }
+
+        private static void ConfigurarHttpClient()
+        {
+            httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(endPoint);
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(endPointHeader));
+        }
+
+        private static void FecharHttpClient()
+        {
+            httpClient = new HttpClient();
         }
     }
 }
